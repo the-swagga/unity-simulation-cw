@@ -7,6 +7,7 @@ public class GrasslandsTile : BaseTile
 {
     [SerializeField] private float treeDensity = 0.05f;
     [SerializeField] private Vector3 treeScale = Vector3.one;
+    [SerializeField] private float waterProb = 0.1f;
     [SerializeField] private GameObject[] treePrefabs;
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private GameObject[] itemPrefabs;
@@ -20,6 +21,7 @@ public class GrasslandsTile : BaseTile
     private void PopulateTile()
     {
         GenerateTrees();
+        GenerateWater();
     }
 
     private void GenerateTrees()
@@ -27,7 +29,6 @@ public class GrasslandsTile : BaseTile
         if (treePrefabs.Length == 0) return;
 
         Vector2 tileSize = GetTileSize();
-        Debug.Log(tileSize.x);
         int treeCount = Mathf.RoundToInt(tileSize.x * treeDensity);
 
         for (int i = 0; i < treeCount; i++)
@@ -43,5 +44,10 @@ public class GrasslandsTile : BaseTile
             GameObject tree = Instantiate(treePrefab, treePos, treeRot, transform);
             tree.transform.localScale = treeScale;
         }
+    }
+
+    private void GenerateWater()
+    {
+
     }
 }
