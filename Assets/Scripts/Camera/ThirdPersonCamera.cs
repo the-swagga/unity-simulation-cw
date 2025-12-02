@@ -6,9 +6,12 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] private float sensitivity = 3.0f;
     [SerializeField] private float minHeight = -30.0f;
     [SerializeField] private float maxHeight = 60.0f;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float camSpeed;
 
     private float yaw;
     private float pitch;
+    public float GetYaw() { return yaw; }
     public float GetPitch() { return pitch; }
 
     private void Start()
@@ -21,13 +24,12 @@ public class ThirdPersonCamera : MonoBehaviour
     private void LateUpdate()
     {
         yaw += Input.GetAxis("Mouse X") * sensitivity;
-        pitch += -(Input.GetAxis("Mouse Y") * sensitivity);
+        pitch -= Input.GetAxis("Mouse Y") * sensitivity;
         pitch = Mathf.Clamp(pitch, minHeight, maxHeight);
 
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0);
-        if (player != null)
-        {
-            transform.position = player.position + Vector3.up * 1.5f;
-        }
+        transform.rotation = Quaternion.Euler(pitch, yaw, 0.0f);
+
+        Vector3 targetPosition = player.position + (transform.rotation * offset);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.deltaTime);
     }
 }

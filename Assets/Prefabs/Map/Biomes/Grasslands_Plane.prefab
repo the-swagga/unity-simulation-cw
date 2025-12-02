@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1151483501124060102}
   - component: {fileID: 2153379466255773041}
   - component: {fileID: 3718368016199214820}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Grasslands_Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

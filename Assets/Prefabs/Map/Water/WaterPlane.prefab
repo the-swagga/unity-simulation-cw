@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4945804533656553588}
   - component: {fileID: 1118966075513933328}
   - component: {fileID: 5368045448017235959}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 7083775276577226951}
   - component: {fileID: 2993933066673774770}
   - component: {fileID: 8051232872581307947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 6888000645402403954}
   - component: {fileID: 552384766006318726}
   - component: {fileID: 8832740385824470273}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2515963986064994116}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CubeWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 6916007059822901579}
   - component: {fileID: 4073304135127247898}
   - component: {fileID: 2282293664543894369}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 348005723399233900}
   - component: {fileID: 4076764974668025535}
   - component: {fileID: 3841305655466643488}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,6 +621,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterPlane
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5b598d911870cef41aac5cc05dcec7d2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 5b598d911870cef41aac5cc05dcec7d2, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.25
@@ -636,6 +640,10 @@ PrefabInstance:
     - target: {fileID: 1151388028547126963, guid: 5b598d911870cef41aac5cc05dcec7d2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 5b598d911870cef41aac5cc05dcec7d2, type: 3}
+      propertyPath: m_Name
+      value: Water
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
