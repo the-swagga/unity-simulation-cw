@@ -10,6 +10,7 @@ public class PlayerCannonController : MonoBehaviour
     private bool cannonActive = true;
     private bool explosiveCannonActive = false;
     private PlayerCannon activeWeapon;
+    private bool canSwap = true;
 
     [SerializeField] private ThirdPersonCamera playerCam;
     private bool isAiming;
@@ -39,7 +40,7 @@ public class PlayerCannonController : MonoBehaviour
 
     private void HandleCannonSwitch()
     {
-        if (Input.GetKeyDown(swapKeybind))
+        if (Input.GetKeyDown(swapKeybind) && canSwap)
         {
             if (cannonActive)
             {
@@ -65,5 +66,10 @@ public class PlayerCannonController : MonoBehaviour
     {
         isAiming = Input.GetMouseButton(1);
         activeWeapon.SetAim(isAiming, playerCam);
+    }
+
+    public void SetCanSwap(bool newCanSwap)
+    {
+        canSwap = newCanSwap;
     }
 }

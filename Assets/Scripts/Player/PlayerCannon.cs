@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCannon : MonoBehaviour
@@ -9,13 +10,22 @@ public class PlayerCannon : MonoBehaviour
     [SerializeField] private float fireForce = 250.0f;
     [SerializeField] private int poolSize = 5;
 
+    [Header("Powerup Variables")]
+    [SerializeField] private PhysicMaterial cannonballPhysicsMat;
+    [SerializeField] private float cherryBounciness;
+    [SerializeField] private float cherryDuration;
+    private Coroutine cherryPowerupCoroutine;
+    private float baseBounciness;
+
     [Header("TrajectoryVariables")]
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private int linePoints = 30;
     [SerializeField] private Material lineMaterial;
 
-    private bool isAiming;
+    [Header("Scripts")]
+    [SerializeField] private PlayerCannonController cannonController;
     [SerializeField] private ThirdPersonCamera playerCam;
+    private bool isAiming;
 
     private GameObject[] cannonballPool;
     private int currentIndex = 0;
@@ -28,10 +38,25 @@ public class PlayerCannon : MonoBehaviour
 
     private void Start()
     {
+        baseBounciness = cannonballPhysicsMat.bounciness;
+
         cannonballPool = new GameObject[poolSize];
         for (int i = 0; i < poolSize; i++)
         {
             GameObject newCannonball = Instantiate(cannonball, Vector3.zero, Quaternion.identity);
+            Collider col = newCannonball.GetComponent<Collider>();
+            if (col != null)
+            {
+                PhysicMaterial physicsMatInstance = new PhysicMaterial();
+                physicsMatInstance.bounciness = baseBounciness;
+                physicsMatInstance.dynamicFriction = cannonballPhysicsMat.dynamicFriction;
+                physicsMatInstance.staticFriction = cannonballPhysicsMat.staticFriction;
+                physicsMatInstance.frictionCombine = cannonballPhysicsMat.frictionCombine;
+                physicsMatInstance.bounceCombine = cannonballPhysicsMat.bounceCombine;
+
+                col.material = physicsMatInstance;
+            }
+
             newCannonball.SetActive(false);
             cannonballPool[i] = newCannonball;
         }
@@ -120,5 +145,48 @@ public class PlayerCannon : MonoBehaviour
 
         currentIndex++;
         if (currentIndex == poolSize) currentIndex = 0;
+    }
+
+    private IEnumerator CherryPowerupCoroutine()
+    {
+        foreach (var cannonball in cannonballPool)
+        {
+            Collider col = cannonball.GetComponent<Collider>();
+            if (col != null && col.material != null) col.material.bounciness = cherryBounciness;
+            cannonController.SetCanSwap(false);
+        }
+
+        float timeLeft = cherryDuration;
+        while (timeLeft > 0.0f)
+        {
+            timeLeft -= Time.deltaTime;
+            yield return null;
+        }
+
+        foreach (var cannonball in cannonballPool)
+        {
+            Collider col = cannonball.GetComponent<Collider>();
+            if (col != null && col.material != null) col.material.bounciness = baseBounciness;
+            cannonController.SetCanSwap(true);
+        }
+
+        cherryPowerupCoroutine = null;
+    }
+
+    public void CherryPowerup()
+    {
+        if (cherryPowerupCoroutine != null)
+        {
+            StopCoroutine(cherryPowerupCoroutine);
+
+            foreach (var cannonball in cannonballPool)
+            {
+                Collider col = cannonball.GetComponent<Collider>();
+                if (col != null && col.material != null) col.material.bounciness = baseBounciness;
+                cannonController.SetCanSwap(true);
+            }
+        }
+
+        cherryPowerupCoroutine = StartCoroutine(CherryPowerupCoroutine());
     }
 }

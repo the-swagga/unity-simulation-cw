@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.iOS;
 
 public class Powerup : MonoBehaviour
 {
     [SerializeField] private string powerupType;
 
     private PlayerController playerController;
+    private PlayerCannon cannon;
 
     private void Start()
     {
@@ -23,7 +25,6 @@ public class Powerup : MonoBehaviour
                 case "banana":
                     if (playerController != null)
                     {
-                        Debug.Log("Banana powerup activating");
                         playerController.BananaPowerup();
                         Destroy(this.gameObject);
                     }
@@ -32,9 +33,18 @@ public class Powerup : MonoBehaviour
                 case "hotdog":
                     if (playerController != null)
                     {
-                        Debug.Log("Hotdog powerup activating");
                         playerController.HotdogPowerup();
                         Destroy(this.gameObject);
+                    }
+                    break;
+
+                case "cherry":
+                    cannon = FindObjectOfType<PlayerCannon>();
+
+                    if (cannon != null)
+                    {
+                        cannon.CherryPowerup();
+                        Destroy (this.gameObject);
                     }
                     break;
             }
