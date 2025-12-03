@@ -1519,8 +1519,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1862364617825999425, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: poolSize
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 1862364617825999425, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: cherryMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 507f5438fbe987140b75a293db6fda53, type: 2}
     - target: {fileID: 1862364617825999425, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: fireForce
       value: 1750
@@ -1529,6 +1533,10 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 2052790984}
+    - target: {fileID: 1862364617825999425, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: playerMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 135e8e563fc5a994ca4868aff3cc9104, type: 2}
     - target: {fileID: 1862364617825999425, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: cherryDuration
       value: 5
@@ -1547,8 +1555,12 @@ PrefabInstance:
       objectReference: {fileID: 13400000, guid: 34adc2b85f3cc8a40b6a0f946a08f528, type: 2}
     - target: {fileID: 3128938994077504350, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: poolSize
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 3128938994077504350, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: cherryMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 507f5438fbe987140b75a293db6fda53, type: 2}
     - target: {fileID: 3128938994077504350, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: fireForce
       value: 2750
@@ -1557,6 +1569,10 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 2052790984}
+    - target: {fileID: 3128938994077504350, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: playerMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 135e8e563fc5a994ca4868aff3cc9104, type: 2}
     - target: {fileID: 3128938994077504350, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: cherryDuration
       value: 5

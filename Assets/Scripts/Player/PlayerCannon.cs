@@ -14,6 +14,8 @@ public class PlayerCannon : MonoBehaviour
     [SerializeField] private PhysicMaterial cannonballPhysicsMat;
     [SerializeField] private float cherryBounciness;
     [SerializeField] private float cherryDuration;
+    [SerializeField] private Material playerMat;
+    [SerializeField] private Material cherryMat;
     private Coroutine cherryPowerupCoroutine;
     private float baseBounciness;
 
@@ -23,6 +25,7 @@ public class PlayerCannon : MonoBehaviour
     [SerializeField] private Material lineMaterial;
 
     [Header("Scripts")]
+    [SerializeField] private PlayerController playerController;
     [SerializeField] private PlayerCannonController cannonController;
     [SerializeField] private ThirdPersonCamera playerCam;
     private bool isAiming;
@@ -38,6 +41,19 @@ public class PlayerCannon : MonoBehaviour
 
     private void Start()
     {
+        if (playerController == null)
+        {
+            playerController = FindObjectOfType<PlayerController>();
+        }
+        if (cannonController == null)
+        {
+            cannonController = FindObjectOfType<PlayerCannonController>();
+        }
+        if (playerCam == null)
+        {
+            playerCam = FindObjectOfType<ThirdPersonCamera>();
+        }
+
         baseBounciness = cannonballPhysicsMat.bounciness;
 
         cannonballPool = new GameObject[poolSize];
@@ -156,6 +172,8 @@ public class PlayerCannon : MonoBehaviour
             cannonController.SetCanSwap(false);
         }
 
+        playerController.SetMaterial(cherryMat);
+
         float timeLeft = cherryDuration;
         while (timeLeft > 0.0f)
         {
@@ -169,6 +187,8 @@ public class PlayerCannon : MonoBehaviour
             if (col != null && col.material != null) col.material.bounciness = baseBounciness;
             cannonController.SetCanSwap(true);
         }
+
+        playerController.SetMaterial(playerMat);
 
         cherryPowerupCoroutine = null;
     }

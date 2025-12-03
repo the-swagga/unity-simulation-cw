@@ -188,4 +188,13 @@ public class PlayerController : MonoBehaviour
 
         hotdogPowerupCoroutine = StartCoroutine(BananaPowerupCoroutine());
     }
+
+    public void SetMaterial(Material newMaterial)
+    {
+        MeshRenderer meshRenderer = this.GetComponentInChildren<MeshRenderer>();
+        if (meshRenderer != null)
+        {
+            meshRenderer.material = newMaterial;
+        }
+    }
 }
