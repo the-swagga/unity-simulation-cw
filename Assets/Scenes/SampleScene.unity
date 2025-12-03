@@ -1176,8 +1176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1191407860756128524}
   sensitivity: 3
-  minHeight: -30
-  maxHeight: 60
+  minHeight: -90
+  maxHeight: 90
   offset: {x: 1, y: 1.5, z: -4}
   camSpeed: 1000
 --- !u!114 &2052790985
@@ -1389,6 +1389,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1384305193}
     m_Modifications:
+    - target: {fileID: 367939284275728880, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 943348841610512563, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -1438,6 +1442,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2052790984}
     - target: {fileID: 1185935166250845147, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: baseMass
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185935166250845147, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: baseSpeed
       value: 1000
       objectReference: {fileID: 0}
@@ -1466,8 +1474,16 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1185935166250845147, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: hotDogMassMult
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185935166250845147, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: hotdogDuration
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185935166250845147, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: hotdogSpeedMult
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1185935166250845147, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: baseJumpStrength
@@ -1519,7 +1535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1862364617825999425, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: poolSize
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1862364617825999425, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: cherryMat
@@ -1553,9 +1569,13 @@ PrefabInstance:
       propertyPath: cannonballPhysicsMat
       value: 
       objectReference: {fileID: 13400000, guid: 34adc2b85f3cc8a40b6a0f946a08f528, type: 2}
+    - target: {fileID: 2106942997806680743, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3128938994077504350, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: poolSize
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3128938994077504350, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: cherryMat

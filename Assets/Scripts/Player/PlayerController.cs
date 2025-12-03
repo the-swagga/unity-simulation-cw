@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private float inputY;
     private Vector3 moveDirection;
 
-    [Header("Movement Variables")]
+    [Header("Movement and Physics Variables")]
     [SerializeField] private float baseSpeed;
     [SerializeField] private float maxSpeedMult;
     [SerializeField] private float groundDrag;
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float baseJumpStrength;
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float airControl;
+    [SerializeField] private float baseMass;
     private Vector3 horizontalVelocity = Vector3.zero;
     private float moveSpeed;
     private float maxSpeed;
@@ -33,7 +34,8 @@ public class PlayerController : MonoBehaviour
     [Header("Powerup Variables")]
     [SerializeField] private float bananaMult;
     [SerializeField] private float bananaDuration;
-    [SerializeField] private float hotdogMult;
+    [SerializeField] private float hotdogSpeedMult;
+    [SerializeField] private float hotDogMassMult;
     [SerializeField] private float hotdogDuration;
     private Coroutine bananaPowerupCoroutine;
     private Coroutine hotdogPowerupCoroutine;
@@ -42,6 +44,11 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        if (baseMass <= 0) baseMass = 1;
+        if (hotDogMassMult <= 0) hotDogMassMult = 1;
+
+        rb.mass = baseMass;
 
         moveSpeed = baseSpeed;
         maxSpeed = moveSpeed * maxSpeedMult;
@@ -135,8 +142,9 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator HotdogPowerupCoroutine()
     {
-        moveSpeed *= hotdogMult;
+        moveSpeed *= hotdogSpeedMult;
         maxSpeed = moveSpeed * maxSpeedMult;
+        rb.mass *= hotDogMassMult;
 
         float timeLeft = hotdogDuration;
         while (timeLeft > 0.0f)
@@ -147,6 +155,7 @@ public class PlayerController : MonoBehaviour
 
         moveSpeed = baseSpeed;
         maxSpeed = moveSpeed * maxSpeedMult;
+        rb.mass = baseMass;
         hotdogPowerupCoroutine = null;
     }
 
@@ -157,6 +166,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(hotdogPowerupCoroutine);
             moveSpeed = baseSpeed;
             maxSpeed = moveSpeed * maxSpeedMult;
+            rb.mass = baseMass;
         }
 
         hotdogPowerupCoroutine = StartCoroutine(HotdogPowerupCoroutine());
@@ -195,6 +205,40 @@ public class PlayerController : MonoBehaviour
         if (meshRenderer != null)
         {
             meshRenderer.material = newMaterial;
+        }
+    }
+
+    public float GetPhysicsMaterialBounciness()
+    {
+        Collider col = this.GetComponentInChildren<Collider>();
+        if (col != null)
+        {
+            return col.material.bounciness;
+        } else return 0.0f;
+    }
+
+    public PhysicMaterialCombine GetPhysicsMaterialBounceCombine()
+    {
+        Collider col = this.GetComponentInChildren<Collider>();
+        if (col != null)
+        {
+            return col.material.bounceCombine;
+        }
+        else return PhysicMaterialCombine.Minimum;
+    }
+
+    public void SetPhysicsMaterialBounciness(float newBounciness, PhysicMaterialCombine newBounceCombine)
+    {
+        Collider col = this.GetComponentInChildren<Collider>();
+        if (col != null)
+        {
+            if (col.material == null)
+            {
+                col.material = new PhysicMaterial();
+            }
+
+            col.material.bounciness = newBounciness;
+            col.material.bounceCombine = newBounceCombine;
         }
     }
 }

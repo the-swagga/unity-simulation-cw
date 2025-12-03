@@ -18,6 +18,8 @@ public class PlayerCannon : MonoBehaviour
     [SerializeField] private Material cherryMat;
     private Coroutine cherryPowerupCoroutine;
     private float baseBounciness;
+    private float basePlayerBounciness;
+    private PhysicMaterialCombine basePlayerBounceCombine;
 
     [Header("TrajectoryVariables")]
     [SerializeField] private LineRenderer lineRenderer;
@@ -44,7 +46,12 @@ public class PlayerCannon : MonoBehaviour
         if (playerController == null)
         {
             playerController = FindObjectOfType<PlayerController>();
+        } else
+        {
+            basePlayerBounciness = playerController.GetPhysicsMaterialBounciness();
+            basePlayerBounceCombine = playerController.GetPhysicsMaterialBounceCombine();
         }
+
         if (cannonController == null)
         {
             cannonController = FindObjectOfType<PlayerCannonController>();
@@ -173,6 +180,7 @@ public class PlayerCannon : MonoBehaviour
         }
 
         playerController.SetMaterial(cherryMat);
+        playerController.SetPhysicsMaterialBounciness(1.0f, PhysicMaterialCombine.Maximum);
 
         float timeLeft = cherryDuration;
         while (timeLeft > 0.0f)
@@ -189,6 +197,7 @@ public class PlayerCannon : MonoBehaviour
         }
 
         playerController.SetMaterial(playerMat);
+        playerController.SetPhysicsMaterialBounciness(basePlayerBounciness, basePlayerBounceCombine);
 
         cherryPowerupCoroutine = null;
     }
@@ -205,6 +214,8 @@ public class PlayerCannon : MonoBehaviour
                 if (col != null && col.material != null) col.material.bounciness = baseBounciness;
                 cannonController.SetCanSwap(true);
             }
+
+            playerController.SetPhysicsMaterialBounciness(basePlayerBounciness, basePlayerBounceCombine);
         }
 
         cherryPowerupCoroutine = StartCoroutine(CherryPowerupCoroutine());
