@@ -15,11 +15,20 @@ public class GrasslandsTile : BaseTile
     [SerializeField] private GameObject[] treePrefabs;
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private GameObject[] itemPrefabs;
+    [SerializeField] private float treeGrowthRate;
+    [SerializeField] private float treeMaxScale;
+
+    private List<GameObject> trees = new List<GameObject>();
 
     public override void Init(Vector2Int coord)
     {
         base.Init(coord);
         PopulateTile();
+    }
+
+    private void Update()
+    {
+        GrowTrees();
     }
 
     private void PopulateTile()
@@ -46,6 +55,7 @@ public class GrasslandsTile : BaseTile
             Quaternion treeRot = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
             GameObject tree = Instantiate(treePrefab, treePos, treeRot, transform);
+            trees.Add(tree);
             Vector3 tileScale = transform.localScale;
             tree.transform.localScale = new Vector3(treeScale.x / tileScale.x, treeScale.y / tileScale.y, treeScale.z / tileScale.z);
         }
@@ -67,6 +77,16 @@ public class GrasslandsTile : BaseTile
             Vector3 tileScale = transform.localScale;
             float randomScale = Random.Range(waterScaleRange.x, waterScaleRange.y);
             water.transform.localScale = new Vector3((waterScale.x * randomScale) / tileScale.x, waterScale.y / tileScale.y, (waterScale.z * randomScale) / tileScale.z);
+        }
+    }
+
+    private void GrowTrees()
+    {
+        foreach (GameObject tree in trees)
+        {
+            if (tree == null) continue;
+
+            if (tree.transform.localScale.x < (treeScale.x * treeMaxScale)) tree.transform.localScale *= treeGrowthRate;
         }
     }
 }

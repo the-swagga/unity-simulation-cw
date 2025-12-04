@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - Powerup
+  - Body
+  - Head
   layers:
   - Default
   - TransparentFX
@@ -13,11 +15,11 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - NPC
+  - Projectile
+  - Powerup
+  - Geometry
   - 
   - 
   - 

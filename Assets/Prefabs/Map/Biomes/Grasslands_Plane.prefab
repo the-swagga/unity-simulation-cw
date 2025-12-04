@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeDensity: 0.1
-  treeScale: {x: 2, y: 2, z: 2}
+  treeScale: {x: 0.5, y: 0.5, z: 0.5}
   waterProb: 0.25
   waterScale: {x: 10, y: 1, z: 10}
   waterScaleRange: {x: 0.5, y: 1.25}
@@ -133,3 +133,5 @@ MonoBehaviour:
   - {fileID: 4124323062290505003, guid: e021f2107856b97978976612624c27b8, type: 3}
   enemyPrefabs: []
   itemPrefabs: []
+  treeGrowthRate: 1.00001
+  treeMaxScale: 0.5
