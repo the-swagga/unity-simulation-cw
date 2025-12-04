@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
             horizontalVelocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
 
             if (horizontalVelocity.magnitude < maxSpeed)
-                rb.AddForce(moveDirection.normalized * moveSpeed * 10.0f, ForceMode.Force);
+                rb.AddForce(moveDirection.normalized * moveSpeed * (rb.mass / baseMass) * 10.0f, ForceMode.Force);
         }
         else if (!isGrounded)
         {
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
                 horizontalVelocity.z = Mathf.Min(horizontalVelocity.z + airDrag * Time.fixedDeltaTime, 0.0f);
 
 
-            Vector3 airVelocity = horizontalVelocity + (moveDirection.normalized * airControl * Time.fixedDeltaTime);
+            Vector3 airVelocity = horizontalVelocity + (moveDirection.normalized * (moveSpeed / hotDogMassMult) * airControl * Time.fixedDeltaTime);
 
             if (airVelocity.magnitude > maxSpeed)
                 airVelocity = airVelocity.normalized * maxSpeed;
