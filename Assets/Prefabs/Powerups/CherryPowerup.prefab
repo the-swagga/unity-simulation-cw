@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupType: Cherry
+  powerupContent: {fileID: 100000, guid: da4eeef492c0d1842963d6576330682d, type: 3}
 --- !u!1001 &6001355852188472589
 PrefabInstance:
   m_ObjectHideFlags: 0

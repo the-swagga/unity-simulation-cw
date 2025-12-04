@@ -71,13 +71,13 @@ public class TileManager : MonoBehaviour
 
     private void GenerateTile(Vector2Int gridCoord)
     {
-        BaseTile tilePrefab = GenerateTileTypePerlin(gridCoord);
+        BaseTile tilePrefab = GenerateTileTypeRandom(gridCoord);
         BaseTile tile = Instantiate(tilePrefab, Vector3.zero, Quaternion.identity, transform);
         tile.Init(gridCoord);
         tiles.Add(gridCoord, tile);
     }
 
-    private BaseTile GenerateTileTypePerlin(Vector2Int gridCoord)
+    private BaseTile GenerateTileTypeRandom(Vector2Int gridCoord)
     {
         float perlinNoise = Mathf.PerlinNoise(gridCoord.x * 0.1f, gridCoord.y * 0.1f);
         if (perlinNoise < 0.33f) return sandTile;

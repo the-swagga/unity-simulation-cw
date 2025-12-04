@@ -61,11 +61,8 @@ public class PlayerController : MonoBehaviour
         maxSpeed = moveSpeed * maxSpeedMult;
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, groundLayer);
-        if (isGrounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0.0f;
 
+        Drag();
         MoveInput();
     }
 
@@ -132,6 +129,14 @@ public class PlayerController : MonoBehaviour
     private void ResetCanJump()
     {
         canJump = true;
+    }
+
+    private void Drag()
+    {
+        if (isGrounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0.0f;
     }
 
     private void RotateWithCamera()

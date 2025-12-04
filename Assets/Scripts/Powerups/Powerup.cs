@@ -4,6 +4,16 @@ public class Powerup : MonoBehaviour
 {
     [SerializeField] private string powerupType;
 
+    private Collider col;
+    private GameObject powerupContent;
+
+    private void Awake()
+    {
+        col = GetComponent<Collider>();
+
+        powerupContent = transform.GetChild(0).gameObject;
+    }
+
     private void Start()
     {
         powerupType = powerupType.ToLower();
@@ -13,6 +23,8 @@ public class Powerup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            col.enabled = false;
+
             switch (powerupType)
             {
                 case "banana":
@@ -21,7 +33,6 @@ public class Powerup : MonoBehaviour
                     if (bananaController != null)
                     {
                         bananaController.BananaPowerup();
-                        Destroy(this.gameObject);
                     }
 
                     break;
@@ -32,7 +43,6 @@ public class Powerup : MonoBehaviour
                     if (hotdogController != null)
                     {
                         hotdogController.HotdogPowerup();
-                        Destroy(this.gameObject);
                     }
 
                     break;
@@ -44,11 +54,12 @@ public class Powerup : MonoBehaviour
                     if (cherryController != null && cannon != null)
                     {
                         cannon.CherryPowerup();
-                        Destroy (this.gameObject);
                     }
 
                     break;
             }
+
+            powerupContent.SetActive(false);
         }
     }
 }

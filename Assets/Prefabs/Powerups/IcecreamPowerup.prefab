@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupType: Icecream
+  powerupContent: {fileID: 6290050685965900453, guid: 22f70e163a75b0643b7e1dfc8599f1a5, type: 3}
 --- !u!1001 &5617913542354228698
 PrefabInstance:
   m_ObjectHideFlags: 0

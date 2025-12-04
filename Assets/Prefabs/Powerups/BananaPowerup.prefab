@@ -221,3 +221,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupType: Banana
+  powerupContent: {fileID: 100000, guid: 461f0170c82b53340a9812199b63bbd4, type: 3}
