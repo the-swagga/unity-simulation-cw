@@ -9,8 +9,9 @@ public class TileManager : MonoBehaviour
     [SerializeField] private BaseTile sandTile;
     [SerializeField] private BaseTile snowTile;
 
-    [SerializeField] private Transform player;
     [SerializeField] private int viewDistance = 1;
+
+    private GameObject player;
 
     private Dictionary<Vector2Int, BaseTile> tiles = new();
     private Vector2Int currentTile;
@@ -20,6 +21,8 @@ public class TileManager : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         UpdateTiles(true);
     }
 
@@ -91,8 +94,8 @@ public class TileManager : MonoBehaviour
         if (tile == null) return Vector2Int.zero;
 
         Vector2 tileSize = tile.GetTileSize();
-        int x = Mathf.FloorToInt(player.position.x / tileSize.x);
-        int y = Mathf.FloorToInt(player.position.z / tileSize.y);
+        int x = Mathf.FloorToInt(player.transform.position.x / tileSize.x);
+        int y = Mathf.FloorToInt(player.transform.position.z / tileSize.y);
 
         return new Vector2Int(x, y);
     }

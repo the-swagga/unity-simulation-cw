@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class GrasslandsTile : BaseTile
 {
-    [SerializeField] private float treeDensity = 0.05f;
+    [SerializeField] private float treeDensity;
     [SerializeField] private Vector3 treeScale = Vector3.one;
-    [SerializeField] private float waterProb = 0.1f;
+    [SerializeField] private float waterProb;
     [SerializeField] private Vector3 waterScale = Vector3.one;
     [SerializeField] private Vector2 waterScaleRange = new Vector2(0.1f, 1.0f);
-    [SerializeField] private float waterYPos = 0.0f;
+    [SerializeField] private float waterYPos;
     [SerializeField] private GameObject waterPrefab;
     [SerializeField] private GameObject[] treePrefabs;
     [SerializeField] private GameObject[] enemyPrefabs;
@@ -86,7 +86,7 @@ public class GrasslandsTile : BaseTile
         {
             if (tree == null) continue;
 
-            if (tree.transform.localScale.x < (treeScale.x * treeMaxScale)) tree.transform.localScale *= treeGrowthRate;
+            if (tree.transform.localScale.x < (treeScale.x * treeMaxScale)) tree.transform.localScale += Vector3.one * (treeGrowthRate * Time.deltaTime);
         }
     }
 }

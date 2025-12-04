@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    private GameObject player;
     [SerializeField] private float sensitivity = 3.0f;
     [SerializeField] private float minHeight = -30.0f;
     [SerializeField] private float maxHeight = 60.0f;
@@ -16,6 +16,8 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         Vector3 angles = transform.eulerAngles;
         yaw = angles.y;
         pitch = angles.x;
@@ -29,7 +31,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(pitch, yaw, 0.0f);
 
-        Vector3 targetPosition = player.position + (transform.rotation * offset);
+        Vector3 targetPosition = player.transform.position + (transform.rotation * offset);
         transform.position = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.deltaTime);
     }
 }

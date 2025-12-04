@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     [SerializeField] private Transform look;
-    [SerializeField] private ThirdPersonCamera cam;
+    private ThirdPersonCamera cam;
 
     private float inputX;
     private float inputY;
@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        cam = FindObjectOfType<ThirdPersonCamera>();
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 

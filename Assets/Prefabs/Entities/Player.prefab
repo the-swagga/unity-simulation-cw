@@ -282,13 +282,13 @@ MonoBehaviour:
   fireOrigin: {fileID: 367939284275728880}
   cannonball: {fileID: 4228412407346503381, guid: dd84822c34e4f5a449c406d800c46aac, type: 3}
   fireRate: 1
-  fireForce: 1250
-  poolSize: 5
-  cannonballPhysicsMat: {fileID: 0}
-  cherryBounciness: 0
+  fireForce: 275
+  poolSize: 10
+  cannonballPhysicsMat: {fileID: 13400000, guid: 34adc2b85f3cc8a40b6a0f946a08f528, type: 2}
+  cherryBounciness: 1
   cherryDuration: 0
-  playerMat: {fileID: 0}
-  cherryMat: {fileID: 0}
+  playerMat: {fileID: 2100000, guid: 135e8e563fc5a994ca4868aff3cc9104, type: 2}
+  cherryMat: {fileID: 2100000, guid: 507f5438fbe987140b75a293db6fda53, type: 2}
   lineRenderer: {fileID: 6592722269540999379}
   linePoints: 60
   lineMaterial: {fileID: 2100000, guid: 90c3f5183cf0f9d488b3821973c75c93, type: 2}
@@ -697,24 +697,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   look: {fileID: 7697253423589382704}
-  cam: {fileID: 0}
-  baseSpeed: 0
-  maxSpeedMult: 0
+  baseSpeed: 1000
+  maxSpeedMult: 0.01
   groundDrag: 10
   airDrag: 0
-  baseJumpStrength: 0
+  baseJumpStrength: 500
   jumpCooldown: 0.25
-  airControl: 25
-  baseMass: 0
+  airControl: 0.05
+  baseMass: 70
   playerHeight: 1.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  bananaMult: 0
-  bananaDuration: 0
-  hotdogSpeedMult: 0
-  hotDogMassMult: 0
-  hotdogDuration: 0
+  bananaMult: 2
+  bananaDuration: 5
+  hotdogSpeedMult: 2
+  hotDogMassMult: 2
+  hotdogDuration: 5
 --- !u!114 &1086900840096645670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,7 +729,6 @@ MonoBehaviour:
   swapKeybind: 102
   cannon: {fileID: 1862364617825999425}
   explosiveCannon: {fileID: 3128938994077504350}
-  playerCam: {fileID: 0}
 --- !u!1 &7922115075984993980
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,13 +893,13 @@ MonoBehaviour:
   fireOrigin: {fileID: 2106942997806680743}
   cannonball: {fileID: 9199258485634881107, guid: e1afcf01122ac9346ad8a7fa0bb0d893, type: 3}
   fireRate: 0.5
-  fireForce: 1250
-  poolSize: 5
-  cannonballPhysicsMat: {fileID: 0}
-  cherryBounciness: 0
-  cherryDuration: 0
-  playerMat: {fileID: 0}
-  cherryMat: {fileID: 0}
+  fireForce: 175
+  poolSize: 10
+  cannonballPhysicsMat: {fileID: 13400000, guid: 34adc2b85f3cc8a40b6a0f946a08f528, type: 2}
+  cherryBounciness: 1
+  cherryDuration: 5
+  playerMat: {fileID: 2100000, guid: 135e8e563fc5a994ca4868aff3cc9104, type: 2}
+  cherryMat: {fileID: 2100000, guid: 507f5438fbe987140b75a293db6fda53, type: 2}
   lineRenderer: {fileID: 8629760272378106148}
   linePoints: 30
   lineMaterial: {fileID: 2100000, guid: 90c3f5183cf0f9d488b3821973c75c93, type: 2}

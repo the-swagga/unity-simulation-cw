@@ -133,5 +133,5 @@ MonoBehaviour:
   - {fileID: 4124323062290505003, guid: e021f2107856b97978976612624c27b8, type: 3}
   enemyPrefabs: []
   itemPrefabs: []
-  treeGrowthRate: 1.00001
-  treeMaxScale: 0.5
+  treeGrowthRate: 0.005
+  treeMaxScale: 0.75

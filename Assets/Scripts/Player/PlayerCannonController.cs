@@ -12,12 +12,14 @@ public class PlayerCannonController : MonoBehaviour
     private PlayerCannon activeWeapon;
     private bool canSwap = true;
 
-    [SerializeField] private ThirdPersonCamera playerCam;
+    private ThirdPersonCamera playerCam;
     private bool isAiming;
     public bool GetIsAiming() { return isAiming; }
 
     private void Start()
     {
+        playerCam = FindObjectOfType<ThirdPersonCamera>();
+
         if (cannonActive)
         {
             cannon.gameObject.SetActive(true);
