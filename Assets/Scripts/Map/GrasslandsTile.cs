@@ -19,6 +19,7 @@ public class GrasslandsTile : BaseTile
     [SerializeField] private float treeMaxScale;
 
     private List<GameObject> trees = new List<GameObject>();
+    private List<float> randomGrowthRates = new List<float>();
 
     public override void Init(Vector2Int coord)
     {
@@ -56,6 +57,10 @@ public class GrasslandsTile : BaseTile
 
             GameObject tree = Instantiate(treePrefab, treePos, treeRot, transform);
             trees.Add(tree);
+
+            float randomGrowthRate = Random.Range(treeGrowthRate * 0.2f, treeGrowthRate * 5.0f);
+            randomGrowthRates.Add(randomGrowthRate);
+
             Vector3 tileScale = transform.localScale;
             tree.transform.localScale = new Vector3(treeScale.x / tileScale.x, treeScale.y / tileScale.y, treeScale.z / tileScale.z);
         }
@@ -82,11 +87,14 @@ public class GrasslandsTile : BaseTile
 
     private void GrowTrees()
     {
-        foreach (GameObject tree in trees)
+        for (int i = 0; i < trees.Count; i++)
         {
+            Debug.Log(randomGrowthRates[i]);
+            GameObject tree = trees[i];
             if (tree == null) continue;
 
-            if (tree.transform.localScale.x < (treeScale.x * treeMaxScale)) tree.transform.localScale += Vector3.one * (treeGrowthRate * Time.deltaTime);
+            if (tree.transform.localScale.x < (treeScale.x * treeMaxScale))
+                tree.transform.localScale += Vector3.one * (randomGrowthRates[i] * Time.deltaTime);
         }
     }
 }

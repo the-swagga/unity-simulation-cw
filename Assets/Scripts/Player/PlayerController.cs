@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
-        rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpStrength * (rb.mass / baseMass), ForceMode.Impulse);
     }
 
     private void ResetCanJump()
