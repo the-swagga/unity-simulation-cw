@@ -89,7 +89,6 @@ public class GrasslandsTile : BaseTile
     {
         for (int i = 0; i < trees.Count; i++)
         {
-            Debug.Log(randomGrowthRates[i]);
             GameObject tree = trees[i];
             if (tree == null) continue;
 
