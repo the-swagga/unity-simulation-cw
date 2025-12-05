@@ -63,6 +63,30 @@ public class PlayerCannon : MonoBehaviour
 
         baseBounciness = cannonballPhysicsMat.bounciness;
 
+        CannonballPoolInit();
+    }
+
+    private void Update()
+    {
+        lineRenderer.material = lineMaterial;
+
+        if (isAiming)
+        {
+            if (lineRenderer != null && !lineRenderer.enabled) lineRenderer.enabled = true;
+
+            AimAtCrosshair();
+            DrawTrajectory();
+
+            if (Input.GetMouseButtonDown(0)) FireCannonball();
+        }
+        else
+        {
+            if (lineRenderer != null && lineRenderer.enabled) lineRenderer.enabled = false;
+        }
+    }
+
+    private void CannonballPoolInit()
+    {
         cannonballPool = new GameObject[poolSize];
         for (int i = 0; i < poolSize; i++)
         {
@@ -82,25 +106,6 @@ public class PlayerCannon : MonoBehaviour
 
             newCannonball.SetActive(false);
             cannonballPool[i] = newCannonball;
-        }
-    }
-
-    private void Update()
-    {
-        lineRenderer.material = lineMaterial;
-
-        if (isAiming)
-        {
-            if (lineRenderer != null && !lineRenderer.enabled) lineRenderer.enabled = true;
-
-            AimAtCrosshair();
-            DrawTrajectory();
-
-            if (Input.GetMouseButtonDown(0)) FireCannonball();
-        }
-        else
-        {
-            if (lineRenderer != null && lineRenderer.enabled) lineRenderer.enabled = false;
         }
     }
 

@@ -20,7 +20,6 @@ public class MenuManager : MonoBehaviour
 
     private void LoadEnemyGame()
     {
-        Debug.Log("Click");
         SceneManager.LoadScene("EnemyScene");
     }
 }

@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeDensity: 0.1
   treeScale: {x: 0.5, y: 0.5, z: 0.5}
-  waterProb: 0.25
+  waterProb: 0.75
   waterScale: {x: 10, y: 1, z: 10}
   waterScaleRange: {x: 0.5, y: 1.25}
   waterYPos: 0
