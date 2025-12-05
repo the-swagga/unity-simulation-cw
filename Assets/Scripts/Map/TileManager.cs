@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] private BaseTile grasslandsTile;
-    [SerializeField] private BaseTile rocklandsTile;
+    [SerializeField] private BaseTile tilePrefab;
 
     [SerializeField] private int viewDistance = 1;
 
@@ -71,25 +70,16 @@ public class TileManager : MonoBehaviour
 
     private void GenerateTile(Vector2Int gridCoord)
     {
-        BaseTile tilePrefab = GenerateTileTypeRandom(gridCoord);
         BaseTile tile = Instantiate(tilePrefab, Vector3.zero, Quaternion.identity, transform);
         tile.Init(gridCoord);
         tiles.Add(gridCoord, tile);
     }
 
-    private BaseTile GenerateTileTypeRandom(Vector2Int gridCoord)
-    {
-        float perlinNoise = Mathf.PerlinNoise(gridCoord.x * 0.1f, gridCoord.y * 0.1f);
-        if (perlinNoise < 0.5f) return rocklandsTile;
-        else return grasslandsTile;
-    }
-
     private Vector2Int GetPlayerTile()
     {
-        BaseTile tile = grasslandsTile ?? rocklandsTile;
-        if (tile == null) return Vector2Int.zero;
+        if (tilePrefab == null) return Vector2Int.zero;
 
-        Vector2 tileSize = tile.GetTileSize();
+        Vector2 tileSize = tilePrefab.GetTileSize();
         int x = Mathf.FloorToInt(player.transform.position.x / tileSize.x);
         int y = Mathf.FloorToInt(player.transform.position.z / tileSize.y);
 
