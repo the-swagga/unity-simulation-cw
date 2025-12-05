@@ -6,8 +6,7 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     [SerializeField] private BaseTile grasslandsTile;
-    [SerializeField] private BaseTile sandTile;
-    [SerializeField] private BaseTile snowTile;
+    [SerializeField] private BaseTile rocklandsTile;
 
     [SerializeField] private int viewDistance = 1;
 
@@ -81,14 +80,13 @@ public class TileManager : MonoBehaviour
     private BaseTile GenerateTileTypeRandom(Vector2Int gridCoord)
     {
         float perlinNoise = Mathf.PerlinNoise(gridCoord.x * 0.1f, gridCoord.y * 0.1f);
-        if (perlinNoise < 0.33f) return sandTile;
-        else if (perlinNoise < 0.67f) return grasslandsTile;
-        else return snowTile;
+        if (perlinNoise < 0.5f) return rocklandsTile;
+        else return grasslandsTile;
     }
 
     private Vector2Int GetPlayerTile()
     {
-        BaseTile tile = grasslandsTile ?? sandTile ?? snowTile;
+        BaseTile tile = grasslandsTile ?? rocklandsTile;
         if (tile == null) return Vector2Int.zero;
 
         Vector2 tileSize = tile.GetTileSize();
@@ -96,5 +94,15 @@ public class TileManager : MonoBehaviour
         int y = Mathf.FloorToInt(player.transform.position.z / tileSize.y);
 
         return new Vector2Int(x, y);
+    }
+
+    public string GetPlayerTileTag()
+    {
+        Vector2Int currentTile = GetCurrentTile();
+        if (tiles.TryGetValue(currentTile, out BaseTile tile))
+        {
+            return tile.tag;
+        }
+        return "";
     }
 }

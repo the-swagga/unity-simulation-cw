@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &123689658692783093
+--- !u!1 &3526676430056237442
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5642605485072442254}
-  - component: {fileID: 4872028837823647119}
-  - component: {fileID: 1151483501124060102}
-  - component: {fileID: 2153379466255773041}
-  - component: {fileID: 3718368016199214820}
+  - component: {fileID: 5266363035598048447}
+  - component: {fileID: 8175833392518705202}
+  - component: {fileID: 5306211605821930216}
+  - component: {fileID: 5624759609189092291}
+  - component: {fileID: 4947929312175801148}
   m_Layer: 3
-  m_Name: Grasslands_Plane
-  m_TagString: GrasslandsTile
+  m_Name: Rocklands_Plane
+  m_TagString: RocklandsTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5642605485072442254
+--- !u!4 &5266363035598048447
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123689658692783093}
+  m_GameObject: {fileID: 3526676430056237442}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1506317, y: -0.3529594, z: 5.7532783}
+  m_LocalPosition: {x: -16.602104, y: 1.110223e-15, z: -26.16312}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4872028837823647119
+--- !u!33 &8175833392518705202
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123689658692783093}
+  m_GameObject: {fileID: 3526676430056237442}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1151483501124060102
+--- !u!23 &5306211605821930216
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123689658692783093}
+  m_GameObject: {fileID: 3526676430056237442}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 08e086aecb213144bb57df959428081b, type: 2}
+  - {fileID: 2100000, guid: 3e4dba6bb4fb5ed44b88970bb81284b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,13 +85,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2153379466255773041
+--- !u!64 &5624759609189092291
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123689658692783093}
+  m_GameObject: {fileID: 3526676430056237442}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -107,31 +107,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3718368016199214820
+--- !u!114 &4947929312175801148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123689658692783093}
+  m_GameObject: {fileID: 3526676430056237442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe74bf6a12ca7c545bd5fca72b79799a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a77b00e4cf3f2446a2045a1bd99c08e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treeDensity: 0.1
-  treeScale: {x: 0.5, y: 0.5, z: 0.5}
-  waterProb: 0.25
-  waterScale: {x: 10, y: 1, z: 10}
-  waterScaleRange: {x: 0.5, y: 1.25}
-  waterYPos: 0
-  waterPrefab: {fileID: 8779428685435177597, guid: ccea26c9866b5a44cbecab4c89eb0281, type: 3}
-  treePrefabs:
-  - {fileID: 1779090162253299471, guid: af28e02efb1b49bc09580ce7162442e3, type: 3}
-  - {fileID: 2441779057326299809, guid: 4e9f5b3ff3b6fa4aaa4678ac8bf8e429, type: 3}
-  - {fileID: 4586183935837940532, guid: 3f7dd0e9bb47425f3b6515ab77926eb2, type: 3}
-  - {fileID: 4124323062290505003, guid: e021f2107856b97978976612624c27b8, type: 3}
-  enemyPrefabs: []
-  itemPrefabs: []
-  treeGrowthRate: 0.001
-  treeMaxScale: 0.75

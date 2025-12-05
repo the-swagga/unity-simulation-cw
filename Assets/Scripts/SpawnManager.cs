@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +35,8 @@ public class SpawnManager : MonoBehaviour
     private void SpawnEnemies()
     {
         if (tileManager == null) return;
+
+        if (tileManager.GetPlayerTileTag() != "RocklandsTile") return;
 
         var tile = tileManager.GetActiveTiles()[currentTile];
         Vector2 tileSize = tile.GetTileSize();
