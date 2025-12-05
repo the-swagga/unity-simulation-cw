@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 4028213976474059311}
   - component: {fileID: 9210706378816659498}
   m_Layer: 6
-  m_Name: FireParticles
+  m_Name: FireParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5465,7 +5465,7 @@ GameObject:
   - component: {fileID: 7485292232731444261}
   - component: {fileID: 5744508565069364046}
   m_Layer: 6
-  m_Name: FireParticles
+  m_Name: FireParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
