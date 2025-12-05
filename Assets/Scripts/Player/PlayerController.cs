@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
             maxSpeed = moveSpeed * maxSpeedMult;
         }
 
-        hotdogPowerupCoroutine = StartCoroutine(BananaPowerupCoroutine());
+        bananaPowerupCoroutine = StartCoroutine(BananaPowerupCoroutine());
     }
 
     public void SetMaterial(Material newMaterial)

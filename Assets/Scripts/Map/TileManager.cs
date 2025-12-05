@@ -11,7 +11,7 @@ public class TileManager : MonoBehaviour
 
     [SerializeField] private int viewDistance = 1;
 
-    private GameObject player;
+    [SerializeField] private GameObject player;
 
     private Dictionary<Vector2Int, BaseTile> tiles = new();
     private Vector2Int currentTile;
@@ -21,8 +21,6 @@ public class TileManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-
         UpdateTiles(true);
     }
 
