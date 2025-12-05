@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerCannon : MonoBehaviour
 {
+    //[Header("Particle Variables")]
+    private ParticleSystem fireParticles;
+
     [Header("Firing Variables")]
     [SerializeField] private Transform fireOrigin;
     [SerializeField] private GameObject cannonball;
@@ -53,13 +56,13 @@ public class PlayerCannon : MonoBehaviour
         }
 
         if (cannonController == null)
-        {
             cannonController = FindObjectOfType<PlayerCannonController>();
-        }
+
         if (playerCam == null)
-        {
             playerCam = FindObjectOfType<ThirdPersonCamera>();
-        }
+
+        if (fireParticles == null)
+            fireParticles = GetComponentInChildren<ParticleSystem>();
 
         baseBounciness = cannonballPhysicsMat.bounciness;
 
@@ -173,6 +176,9 @@ public class PlayerCannon : MonoBehaviour
 
         currentIndex++;
         if (currentIndex == poolSize) currentIndex = 0;
+
+        if (fireParticles != null)
+            fireParticles.Play();
     }
 
     private IEnumerator CherryPowerupCoroutine()
