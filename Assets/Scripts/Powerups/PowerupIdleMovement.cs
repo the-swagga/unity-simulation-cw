@@ -5,8 +5,8 @@ using UnityEngine;
 public class PowerupIdleMovement : MonoBehaviour
 {
     [SerializeField] private Vector3 rotationSpeed = new Vector3(0, 45, 0);
-    [SerializeField] private float bobDistance = 0.1f;
     [SerializeField] private float bobSpeed = 3.0f;
+    [SerializeField] private float bobDistance = 0.1f;
 
     private Vector3 startPos;
 
