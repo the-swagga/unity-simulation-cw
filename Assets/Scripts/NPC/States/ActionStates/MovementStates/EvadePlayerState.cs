@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PursuePlayerState : BaseEnemyState
+public class EvadePlayerState : MovementActionState
 {
     private EnemyMovement enemyMovement;
 
@@ -11,11 +11,12 @@ public class PursuePlayerState : BaseEnemyState
 
     public override void ActivateState()
     {
-        
+        enemyMovement.EvadePlayer();
     }
+
     public override void UpdateState()
     {
-        enemyMovement.SetDestToPlayer();
+        
     }
 
     public override void DeactivateState()
