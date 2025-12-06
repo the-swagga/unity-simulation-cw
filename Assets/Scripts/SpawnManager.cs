@@ -4,11 +4,11 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private TileManager tileManager;
+    [SerializeField] private BaseTile tile;
 
     private Vector2Int currentTile;
 
-    [SerializeField] private Transform entitiesParent;
+    [SerializeField] private Transform hivemindParent;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int[] enemyCountRange = new int[2];
     [SerializeField] private float enemySocialDistancing;
@@ -17,16 +17,10 @@ public class SpawnManager : MonoBehaviour
     private bool enemiesSpawned = false;
     private Vector2Int spawnedTile;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
-        if (tileManager == null) return;
-
-        currentTile = tileManager.GetCurrentTile();
+        if (tile == null)
+            tile = FindObjectOfType<BaseTile>();
 
         if (!enemiesSpawned)
             SpawnEnemies();
@@ -34,11 +28,6 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        if (tileManager == null) return;
-
-        if (tileManager.GetPlayerTileTag() != "RocklandsTile") return;
-
-        var tile = tileManager.GetActiveTiles()[currentTile];
         Vector2 tileSize = tile.GetTileSize();
         Vector3 tilePos = tile.transform.position;
 
@@ -59,12 +48,21 @@ public class SpawnManager : MonoBehaviour
 
             socialDistancingX = Random.Range(socialDistancingX / 2.0f, socialDistancingX);
             socialDistancingZ = Random.Range(socialDistancingZ / 2.0f, socialDistancingZ);
-            Vector3 spawnPos = enemyGroupPos + new Vector3(socialDistancingX, 0.0f, socialDistancingZ);
+            Vector3 spawnPos = enemyGroupPos + new Vector3(socialDistancingX, 1.25f, socialDistancingZ);
 
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, entitiesParent);
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, hivemindParent);
             enemies.Add(newEnemy);
         }
 
         enemiesSpawned = true;
+
+        foreach (GameObject enemy in enemies)
+        {
+            EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
+            if (movement != null)
+            {
+                movement.SetPlayer(player.transform);
+            }
+        }
     }
 }
