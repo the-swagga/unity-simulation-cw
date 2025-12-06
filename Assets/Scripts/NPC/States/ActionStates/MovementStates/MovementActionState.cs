@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementActionState : EnemyActionState
+public class MovementActionState : BaseEnemyActionState
 {
 
 }
