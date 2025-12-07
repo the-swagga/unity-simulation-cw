@@ -1,13 +1,16 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class EnemyHivemind : MonoBehaviour
 {
+    private GameObject player;
+
     [Header("State Variables")]
+    [SerializeField] private float stateDuration;
     [SerializeField] private float aggressionToCollide;
-    [SerializeField] private float evasionLockoutDuration;
-    private bool evasionLockout = false;
+    private bool switchState = false;
 
     private List<BaseEnemyState> pursueStates = new List<BaseEnemyState>();
     private List<BaseEnemyState> evadeStates = new List<BaseEnemyState>();
@@ -18,24 +21,21 @@ public class EnemyHivemind : MonoBehaviour
     private List<EnemyStats> enemyStatsList = new List<EnemyStats>();
     private int currentEnemyHP;
     private float currentEnemyBravery;
-    //private List<EnemyAttack> enemyAttackList = new List<EnemyAttack>();
-
-    private float stateSwitch = 5.0f;
-    private float switchTimer = 0.0f;
+    private List<EnemyAttack> enemyAttackList = new List<EnemyAttack>();
 
     private bool initialised = false;
 
     private void Start()
     {
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+
         StartCoroutine(DelayedInit());
     }
 
     private void Update()
     {
         if (!initialised) return;
-
-        foreach (var state in activeStates)
-            state.UpdateState();
 
         EnemyDecisions();
     }
@@ -46,14 +46,14 @@ public class EnemyHivemind : MonoBehaviour
         {
             EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
             EnemyStats stats = enemy.GetComponent<EnemyStats>();
-            // EnemyAttack attack = enemy.GetComponent<EnemyAttack>();
+            EnemyAttack attack = enemy.GetComponent<EnemyAttack>();
             PursuePlayerState pursuePlayer = enemy.GetComponent<PursuePlayerState>();
             EvadePlayerState evadePlayer = enemy.GetComponent<EvadePlayerState>();
             AttackPlayerState attackPlayer = enemy.GetComponent<AttackPlayerState>();
             CollidePlayerState collidePlayer = enemy.GetComponent<CollidePlayerState>();
 
             enemyStatsList.Add(stats);
-            // enemyAttackList.Add(attack);
+            enemyAttackList.Add(attack);
 
             if (movement != null)
             {
@@ -61,6 +61,14 @@ public class EnemyHivemind : MonoBehaviour
                     pursuePlayer.Init(movement);
                 if (evadePlayer != null)
                     evadePlayer.Init(movement);
+            }
+
+            if (attack != null)
+            {
+                if (attackPlayer != null)
+                    attackPlayer.Init(attack);
+                if (collidePlayer != null)
+                    collidePlayer.Init(attack);
             }
 
             if (pursuePlayer != null && evadePlayer != null && attackPlayer != null && collidePlayer != null)
@@ -86,21 +94,17 @@ public class EnemyHivemind : MonoBehaviour
 
     private void EnemyDecisions()
     {
-        if (evasionLockout) return;
-
-        switchTimer += Time.deltaTime;
-
-        if (switchTimer >= stateSwitch)
+        for (int i = 0; i < enemyCount; i++)
         {
-            switchTimer = 0.0f;
+            BaseEnemyState currentState = activeStates[i];
+            currentState.UpdateState();
 
-            for (int i = 0; i < enemyCount; i++)
+            currentEnemyHP = enemyStatsList[i].GetHP();
+            currentEnemyBravery = enemyStatsList[i].GetBravery();
+
+            BaseEnemyState newState = currentState;
+            if (currentState.FinishState())
             {
-                BaseEnemyState oldState = activeStates[i];
-                BaseEnemyState newState;
-                currentEnemyHP = enemyStatsList[i].GetHP();
-                currentEnemyBravery = enemyStatsList[i].GetBravery();
-
                 // Odds to pursue and attack: ((Hivemind Health * Hivemind Bravery) - Individual Health) * Individual Bravery
                 int hivemindHealth = HivemindHP();
                 float hivemindBravery = HivemindAvgBravery();
@@ -112,13 +116,13 @@ public class EnemyHivemind : MonoBehaviour
                     newState = ActAggressive(i, aggression);
                 else
                     newState = ActPassive(i);
+            }
 
-                if (newState != oldState)
-                {
-                    oldState.DeactivateState();
-                    newState.ActivateState();
-                    activeStates[i] = newState;
-                }
+            if (newState != currentState)
+            {
+                currentState.DeactivateState();
+                newState.ActivateState();
+                activeStates[i] = newState;
             }
         }
     }
@@ -151,30 +155,27 @@ public class EnemyHivemind : MonoBehaviour
 
     private BaseEnemyState ActAggressive(int enemyIndex, float aggression)
     {
-        // code to get range from EnemyAttack, compare distance to player with range
-        float placeholderDistance = 5.0f;
-
         if (aggression >= aggressionToCollide)
+        {
+            Debug.Log("Colliding");
             return collideStates[enemyIndex];
+        }
+            
 
-        //if (placeholderDistance <= enemyAttackList[enemyIndex].GetRange())
-            //return attackStates[enemyIndex];
+        EnemyAttack attack = enemyAttackList[enemyIndex];
+        if (attack.CanHitTarget(player.transform.position))
+        {
+            Debug.Log("Attacking");
+            return attackStates[enemyIndex];
+        }
 
+        Debug.Log("Pursuing");
         return pursueStates[enemyIndex];
     }
 
     private BaseEnemyState ActPassive(int enemyIndex)
     {
-        if (!evasionLockout)
-            StartCoroutine(EvasionLockoutCoroutine());
-
+        Debug.Log("Evading");
         return evadeStates[enemyIndex];
-    }
-
-    private IEnumerator EvasionLockoutCoroutine()
-    {
-        evasionLockout = true;
-        yield return new WaitForSeconds(evasionLockoutDuration);
-        evasionLockout = false;
     }
 }

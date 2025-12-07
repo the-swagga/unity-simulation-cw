@@ -6,6 +6,12 @@ public class EnemyStats : MonoBehaviour
 
     private float bravery = 0.5f;
 
+    private void Start()
+    {
+        bravery = Random.Range(0.0f, 1.0f);
+        Debug.Log("Bravery " + bravery);
+    }
+
     private void Update()
     {
         CheckHP();

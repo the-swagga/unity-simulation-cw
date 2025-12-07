@@ -14,4 +14,9 @@ public class BaseEnemyState : MonoBehaviour
     {
 
     }
+
+    public virtual bool FinishState()
+    {
+        return false;
+    }
 }

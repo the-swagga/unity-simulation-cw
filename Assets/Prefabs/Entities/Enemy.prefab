@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 5485052797585138370}
   - component: {fileID: -1686317112223390375}
   - component: {fileID: -8639003027783791750}
+  - component: {fileID: -7683174500283643086}
+  - component: {fileID: 3944578902860587336}
+  - component: {fileID: -260835742732341601}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -105,6 +108,9 @@ MonoBehaviour:
   speedRange:
   - 1
   - 10
+  getCloserRange:
+  - 0.25
+  - 0.5
 --- !u!114 &5485052797585138370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +152,43 @@ MonoBehaviour:
   fireRate: 1
   maxFireForce: 20
   poolSize: 5
+--- !u!114 &-7683174500283643086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801879456939386149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b2dbdec566a0a46a89a19393966234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+--- !u!114 &3944578902860587336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801879456939386149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee2f4320b7906c4d925f2978ccb778b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-260835742732341601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801879456939386149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb7118fdf5388346996f53cec17f247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2216407442877165608
 GameObject:
   m_ObjectHideFlags: 0

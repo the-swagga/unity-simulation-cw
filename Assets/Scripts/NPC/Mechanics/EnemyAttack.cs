@@ -25,21 +25,6 @@ public class EnemyAttack : MonoBehaviour
         ProjectilePoolInit();
     }
 
-    private void Update()
-    {
-        if (player == null) return;
-
-        fireRateTimer += Time.deltaTime;
-        if (fireRateTimer >= fireRate)
-        {
-            fireRateTimer = 0.0f;
-            if (CanHitTarget(player.transform.position))
-            {
-                FireProjectile();
-            }
-        }
-    }
-
     private void ProjectilePoolInit()
     {
         projectilePool = new GameObject[poolSize];
@@ -51,7 +36,7 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    private bool CanHitTarget(Vector3 targetPos)
+    public bool CanHitTarget(Vector3 targetPos)
     {
         Vector3 distance = targetPos - fireOrigin.position;
 
@@ -142,5 +127,30 @@ public class EnemyAttack : MonoBehaviour
         float tanth2 = ((u * u) - sqrtDiscriminant) / (ay * sx);
         float angle = Mathf.Atan(Mathf.Min(tanth1, tanth2));
         return angle;
+    }
+
+    public void TryFire()
+    {
+        if (player == null) return;
+
+        fireRateTimer += Time.deltaTime;
+        if (fireRateTimer >= fireRate)
+        {
+            fireRateTimer = 0.0f;
+            if (CanHitTarget(player.transform.position))
+            {
+                FireProjectile();
+            }
+        }
+    }
+
+    public void ResetFireRateTimer()
+    {
+        fireRateTimer = fireRate;
+    }
+
+    public Vector3 GetPlayerPos()
+    {
+        return player.transform.position;
     }
 }

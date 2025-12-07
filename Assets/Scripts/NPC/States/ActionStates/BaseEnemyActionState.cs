@@ -28,4 +28,12 @@ public class BaseEnemyActionState : BaseEnemyState
         if (currentSubState != null)
             currentSubState.DeactivateState();
     }
+
+    public override bool FinishState()
+    {
+        if (currentSubState != null)
+            currentSubState.FinishState();
+
+        return false;
+    }
 }

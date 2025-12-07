@@ -1893,8 +1893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e427e03d4f1e0949b05491ce31e82c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggressionToCollide: 0
-  evasionLockoutDuration: 0
+  stateDuration: 2.5
+  aggressionToCollide: 100
 --- !u!1001 &1598342954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2489,8 +2489,8 @@ MonoBehaviour:
   tile: {fileID: 2135466132}
   hivemindParent: {fileID: 1561424115}
   enemyPrefab: {fileID: 801879456939386149, guid: 7929351c8cc9ec54e828db6eb8f1f4e3, type: 3}
-  enemyCountRange: 050000000a000000
-  enemySocialDistancing: 5
+  enemyCountRange: 0300000006000000
+  enemySocialDistancing: 7.5
 --- !u!4 &2127650279
 Transform:
   m_ObjectHideFlags: 0

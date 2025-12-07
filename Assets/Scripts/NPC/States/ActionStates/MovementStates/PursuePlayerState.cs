@@ -22,4 +22,14 @@ public class PursuePlayerState : MovementActionState
     {
         enemyMovement.StopMoving();
     }
+
+    public override bool FinishState()
+    {
+        EnemyAttack enemyAttack = GetComponent<EnemyAttack>();
+        if (enemyAttack != null && enemyAttack.CanHitTarget(enemyAttack.GetPlayerPos()))
+        {
+            enemyMovement.GetCloser(enemyAttack.GetPlayerPos());
+            return true;
+        } else { return false; }
+    }
 }
