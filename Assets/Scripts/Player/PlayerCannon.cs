@@ -9,9 +9,9 @@ public class PlayerCannon : MonoBehaviour
     [Header("Firing Variables")]
     [SerializeField] private Transform fireOrigin;
     [SerializeField] private GameObject cannonball;
-    [SerializeField] private float fireRate = 1.0f;
-    [SerializeField] private float fireForce = 250.0f;
-    [SerializeField] private int poolSize = 5;
+    [SerializeField] private float fireRate;
+    [SerializeField] private float fireForce;
+    [SerializeField] private int poolSize;
 
     [Header("Powerup Variables")]
     [SerializeField] private PhysicMaterial cannonballPhysicsMat;
@@ -175,7 +175,8 @@ public class PlayerCannon : MonoBehaviour
         rb.AddForce(fireOrigin.up * fireForce, ForceMode.Impulse);
 
         currentIndex++;
-        if (currentIndex == poolSize) currentIndex = 0;
+        if (currentIndex == poolSize)
+            currentIndex = 0;
 
         if (fireParticleSystem != null)
             fireParticleSystem.Play();

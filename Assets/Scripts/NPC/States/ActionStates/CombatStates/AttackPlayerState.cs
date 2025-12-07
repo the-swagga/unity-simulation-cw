@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : CombatActionState
+public class AttackPlayerState : CombatActionState
 {
 
 }

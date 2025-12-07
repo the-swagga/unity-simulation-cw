@@ -125,7 +125,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3eb079016c4106b41bc3f19de570f770, type: 2}
+  - {fileID: 2100000, guid: cd8a2f90145f941438c7d1cbfa7dfa0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5171,7 +5171,7 @@ MonoBehaviour:
   cannonball: {fileID: 4228412407346503381, guid: dd84822c34e4f5a449c406d800c46aac, type: 3}
   fireRate: 1
   fireForce: 275
-  poolSize: 10
+  poolSize: 25
   cannonballPhysicsMat: {fileID: 13400000, guid: 34adc2b85f3cc8a40b6a0f946a08f528, type: 2}
   cherryBounciness: 1
   cherryDuration: 0
@@ -10634,7 +10634,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3eb079016c4106b41bc3f19de570f770, type: 2}
+  - {fileID: 2100000, guid: cd8a2f90145f941438c7d1cbfa7dfa0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10672,7 +10672,7 @@ MonoBehaviour:
   cannonball: {fileID: 9199258485634881107, guid: e1afcf01122ac9346ad8a7fa0bb0d893, type: 3}
   fireRate: 0.5
   fireForce: 175
-  poolSize: 10
+  poolSize: 25
   cannonballPhysicsMat: {fileID: 13400000, guid: 34adc2b85f3cc8a40b6a0f946a08f528, type: 2}
   cherryBounciness: 1
   cherryDuration: 5
