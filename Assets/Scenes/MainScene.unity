@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1849616809845162831, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2182828204724733686, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.132884
@@ -170,13 +174,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2182828204724968144, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182828204724968146, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2182828204724968148, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2182828204724968150, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
       propertyPath: m_Name
       value: CarPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182828204724968150, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182828204724968156, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182828204724968158, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516374821549923105, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2962784097592302008, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
       propertyPath: speed
@@ -189,6 +217,18 @@ PrefabInstance:
     - target: {fileID: 2962784097592302008, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
       propertyPath: turnAngle
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386319778609499290, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425930009162982272, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510255582380099690, guid: 2a1f8fc56e1632b40b70fe0420d9a8b4, type: 3}
+      propertyPath: m_Constraints
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

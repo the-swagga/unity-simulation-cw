@@ -18,7 +18,7 @@ public class CarDriveSim : MonoBehaviour
 
     private void Start()
     {
-        turnTime = Random.Range(0.5f, 1.5f);
+        turnTime = Random.Range(0.75f, 1.5f);
         float steerAngle = Random.Range(-turnAngle, turnAngle);
         wheelFL.steerAngle = steerAngle;
         wheelFR.steerAngle = steerAngle;
@@ -39,7 +39,7 @@ public class CarDriveSim : MonoBehaviour
         else
         {
             {
-                if (driveTimer >= driveTime / 2.0f)
+                if (driveTimer >= driveTime / 3.0f)
                 {
                     forward = true;
                     driveTimer = 0.0f;
