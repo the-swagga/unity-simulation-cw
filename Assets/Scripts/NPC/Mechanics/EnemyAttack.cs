@@ -136,12 +136,22 @@ public class EnemyAttack : MonoBehaviour
         fireRateTimer += Time.deltaTime;
         if (fireRateTimer >= fireRate)
         {
+            FaceTarget(player.transform.position);
             fireRateTimer = 0.0f;
             if (CanHitTarget(player.transform.position))
             {
                 FireProjectile();
             }
         }
+    }
+
+    private void FaceTarget(Vector3 target)
+    {
+        Vector3 direction = target - transform.position;
+        direction.y = 0.0f;
+
+        Quaternion look = Quaternion.LookRotation(direction);
+        transform.rotation = look;
     }
 
     public void ResetFireRateTimer()
