@@ -6,35 +6,36 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private BaseTile tile;
 
-    private Vector2Int currentTile;
-
-    [SerializeField] private Transform hivemindParent;
+    [SerializeField] private Transform[] hivemindParents;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int[] enemyCountRange = new int[2];
     [SerializeField] private float enemySocialDistancing;
 
     private List<GameObject> enemies = new List<GameObject>();
     private bool enemiesSpawned = false;
-    private Vector2Int spawnedTile;
 
     void Update()
     {
         if (tile == null)
             tile = FindObjectOfType<BaseTile>();
 
-        if (!enemiesSpawned)
-            SpawnEnemies();
+        if (!enemiesSpawned && hivemindParents.Length > 0)
+        {
+            for (int i = 0; i < hivemindParents.Length; i++)
+            {
+                SpawnEnemies(hivemindParents[i]);
+            }
+            enemiesSpawned = true;
+        }
     }
 
-    private void SpawnEnemies()
+    private void SpawnEnemies(Transform hivemindParent)
     {
         Vector2 tileSize = tile.GetTileSize();
         Vector3 tilePos = tile.transform.position;
 
         int enemyCount = Random.Range(enemyCountRange[0], enemyCountRange[1]);
-        float enemyGroupX = Random.Range(-tileSize.x / 2.0f, tileSize.x / 2.0f);
-        float enemyGroupZ = Random.Range(-tileSize.y / 2.0f, tileSize.y / 2.0f);
-        Vector3 enemyGroupPos = tilePos + new Vector3(enemyGroupX, 0.0f, enemyGroupZ);
+        Vector3 enemyHivemindPos = hivemindParent.position;
 
         for (int i = 0; i < enemyCount; i++)
         {
@@ -48,7 +49,7 @@ public class SpawnManager : MonoBehaviour
 
             socialDistancingX = Random.Range(socialDistancingX / 2.0f, socialDistancingX);
             socialDistancingZ = Random.Range(socialDistancingZ / 2.0f, socialDistancingZ);
-            Vector3 spawnPos = enemyGroupPos + new Vector3(socialDistancingX, 1.25f, socialDistancingZ);
+            Vector3 spawnPos = enemyHivemindPos + new Vector3(socialDistancingX, 1.25f, socialDistancingZ);
 
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, hivemindParent);
             enemies.Add(newEnemy);

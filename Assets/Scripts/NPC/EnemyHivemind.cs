@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyHivemind : MonoBehaviour
@@ -10,7 +9,6 @@ public class EnemyHivemind : MonoBehaviour
     [Header("State Variables")]
     [SerializeField] private float stateDuration;
     [SerializeField] private float aggressionToCollide;
-    private bool switchState = false;
 
     private List<BaseEnemyState> pursueStates = new List<BaseEnemyState>();
     private List<BaseEnemyState> evadeStates = new List<BaseEnemyState>();
@@ -19,6 +17,7 @@ public class EnemyHivemind : MonoBehaviour
     private List<BaseEnemyState> activeStates = new List<BaseEnemyState>();
     private int enemyCount;
     private List<EnemyStats> enemyStatsList = new List<EnemyStats>();
+    private int enemyBaseHP;
     private int currentEnemyHP;
     private float currentEnemyBravery;
     private List<EnemyAttack> enemyAttackList = new List<EnemyAttack>();
@@ -37,7 +36,29 @@ public class EnemyHivemind : MonoBehaviour
     {
         if (!initialised) return;
 
+        CheckEnemyDead();
         EnemyDecisions();
+    }
+
+    private void CheckEnemyDead()
+    {
+        for (int i = activeStates.Count - 1;  i >= 0; i--)
+        {
+            EnemyStats stats = enemyStatsList[i];
+            if (stats != null && stats.GetHP() <= 0)
+            {
+                Destroy(stats.gameObject);
+                enemyStatsList.RemoveAt(i);
+                enemyAttackList.RemoveAt(i);
+                pursueStates.RemoveAt(i);
+                evadeStates.RemoveAt(i);
+                attackStates.RemoveAt(i);
+                collideStates.RemoveAt(i);
+                activeStates.RemoveAt(i);
+            }
+        }
+
+        enemyCount = activeStates.Count;
     }
 
     private void InitEnemyStates()
@@ -51,6 +72,8 @@ public class EnemyHivemind : MonoBehaviour
             EvadePlayerState evadePlayer = enemy.GetComponent<EvadePlayerState>();
             AttackPlayerState attackPlayer = enemy.GetComponent<AttackPlayerState>();
             CollidePlayerState collidePlayer = enemy.GetComponent<CollidePlayerState>();
+
+            enemyBaseHP = stats.GetHP();
 
             enemyStatsList.Add(stats);
             enemyAttackList.Add(attack);
@@ -94,6 +117,8 @@ public class EnemyHivemind : MonoBehaviour
 
     private void EnemyDecisions()
     {
+        if (enemyCount <= 0) return;
+
         for (int i = 0; i < enemyCount; i++)
         {
             BaseEnemyState currentState = activeStates[i];
@@ -113,7 +138,7 @@ public class EnemyHivemind : MonoBehaviour
 
                 float randomDecision = Random.Range(0.0f, 1.0f);
                 if (randomDecision < aggression)
-                    newState = ActAggressive(i, aggression);
+                    newState = ActAggressive(i, aggression, currentEnemyHP);
                 else
                     newState = ActPassive(i);
             }
@@ -153,9 +178,9 @@ public class EnemyHivemind : MonoBehaviour
         return bravery;
     }
 
-    private BaseEnemyState ActAggressive(int enemyIndex, float aggression)
+    private BaseEnemyState ActAggressive(int enemyIndex, float aggression, float hp)
     {
-        if (aggression >= aggressionToCollide)
+        if (aggression >= aggressionToCollide && hp <= (enemyBaseHP * 0.25f))
         {
             Debug.Log("Colliding");
             return collideStates[enemyIndex];
@@ -177,5 +202,24 @@ public class EnemyHivemind : MonoBehaviour
     {
         Debug.Log("Evading");
         return evadeStates[enemyIndex];
+    }
+
+    public Vector3 HivemindCentre()
+    {
+        List<Vector3> enemyPositions = new List<Vector3>();
+        foreach (Transform enemy in transform)
+        {
+            enemyPositions.Add(enemy.position);
+        }
+
+        Vector3 centre = Vector3.zero;
+        foreach (Vector3 position in enemyPositions)
+        {
+            centre += position;
+        }
+
+        centre /= enemyPositions.Count;
+
+        return centre;
     }
 }

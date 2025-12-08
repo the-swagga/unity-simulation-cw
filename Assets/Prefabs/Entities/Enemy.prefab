@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -7683174500283643086}
   - component: {fileID: 3944578902860587336}
   - component: {fileID: -260835742732341601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,6 +111,12 @@ MonoBehaviour:
   getCloserRange:
   - 0.25
   - 0.5
+  evadeRange:
+  - 5
+  - 10
+  collideSpeedMult:
+  - 1.5
+  - 3
 --- !u!114 &5485052797585138370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,10 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireOrigin: {fileID: 7058538890867294976}
-  projectilePrefab: {fileID: 9199258485634881107, guid: e1afcf01122ac9346ad8a7fa0bb0d893, type: 3}
-  fireRate: 1
+  projectilePrefab: {fileID: 9199258485634881107, guid: 27e859e80b2eb2a4f9d6830e994edfb5, type: 3}
+  fireRate: 2
   maxFireForce: 20
-  poolSize: 5
+  poolSize: 2
 --- !u!114 &-7683174500283643086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b2dbdec566a0a46a89a19393966234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  baseHP: 100
+  enemyDamageMult: 0.25
 --- !u!114 &3944578902860587336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +208,7 @@ GameObject:
   - component: {fileID: 7007530388021898045}
   - component: {fileID: 4411068115046352081}
   - component: {fileID: 8196172062191402777}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Body
   m_Icon: {fileID: 0}
@@ -308,7 +315,7 @@ GameObject:
   - component: {fileID: 957054383016330385}
   - component: {fileID: 2024959363884101446}
   - component: {fileID: 6697690181784662399}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Head
   m_Icon: {fileID: 0}
@@ -410,7 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7058538890867294976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

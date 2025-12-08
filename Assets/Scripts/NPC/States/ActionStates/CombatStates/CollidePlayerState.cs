@@ -17,11 +17,11 @@ public class CollidePlayerState : CombatActionState
     }
     public override void UpdateState()
     {
-        
+        enemyAttack.CollideWithPlayer();
     }
 
     public override void DeactivateState()
     {
-
+        
     }
 }

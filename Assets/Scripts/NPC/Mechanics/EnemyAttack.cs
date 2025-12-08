@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     private GameObject player;
+    private EnemyMovement movement;
 
     [Header("Firing Variables")]
     [SerializeField] private Transform fireOrigin;
@@ -10,7 +11,6 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float maxFireForce;
     [SerializeField] private int poolSize;
-    private float requiredInitialVelocity;
 
     private GameObject[] projectilePool;
     private int currentIndex = 0;
@@ -21,6 +21,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
+
+        if (movement == null)
+            movement = GetComponent<EnemyMovement>();
 
         ProjectilePoolInit();
     }
@@ -36,8 +39,15 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
+    public void CollideWithPlayer()
+    {
+        movement.CollidePlayerMovement(player.transform);
+    }
+
     public bool CanHitTarget(Vector3 targetPos)
     {
+        float requiredInitialVelocity = 0.0f;
+
         Vector3 distance = targetPos - fireOrigin.position;
 
         float verticalDistance = distance.y;

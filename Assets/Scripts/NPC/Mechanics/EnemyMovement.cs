@@ -4,27 +4,43 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private EnemyHivemind enemyHivemind;
     [SerializeField] private NavMeshAgent agent;
     private Transform player;
 
     [Header("Movement Variables")]
     [SerializeField] private float[] speedRange = new float[2];
     [SerializeField] private float[] getCloserRange = new float[2];
+    [SerializeField] private float[] evadeRange = new float[2];
+    [SerializeField] private float[] collideSpeedMult = new float[2];
+    private float baseSpeed;
 
     private void Start()
     {
+        if (enemyHivemind == null)
+            enemyHivemind = GetComponentInParent<EnemyHivemind>();
+
         if (agent == null)
             agent = GetComponent<NavMeshAgent>();
 
-        if (agent != null && player != null)
-        {
-            SetRandomSpeed();
-        }
+        SetRandomSpeed();
+
+        baseSpeed = agent.speed;
     }
 
     public void SetPlayer(Transform playerTransform)
     {
         player = playerTransform;
+    }
+
+    public float GetSpeed()
+    {
+        return agent.speed;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        agent.speed = speed;
     }
 
     private void SetRandomSpeed()
@@ -69,14 +85,28 @@ public class EnemyMovement : MonoBehaviour
     {
         agent.isStopped = false;
 
-        Vector3 awayFromPlayer = (transform.position - player.position).normalized;
-        Vector3 target = transform.position + awayFromPlayer * 50.0f;
+        Vector3 hivemindCentre = enemyHivemind.HivemindCentre();
+        Vector3 playerRelativeDirection = (hivemindCentre - player.position).normalized;
+        playerRelativeDirection.y = 0.0f;
+
+        float evadeDistance = Random.Range(evadeRange[0], evadeRange[1]);
+        Vector3 target = hivemindCentre + (playerRelativeDirection * evadeDistance);
         target.y = transform.position.y;
+
         agent.SetDestination(target);
     }
 
     public void StopMoving()
     {
         agent.isStopped = true;
+    }
+
+    public void CollidePlayerMovement(Transform target)
+    {
+        agent.isStopped = false;
+        agent.SetDestination(target.position);
+
+        float speedMult = Random.Range(collideSpeedMult[0], collideSpeedMult[1]);
+        agent.speed = baseSpeed * speedMult;
     }
 }

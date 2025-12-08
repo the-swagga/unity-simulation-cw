@@ -19,11 +19,11 @@ TagManager:
   - UI
   - Player
   - NPC
-  - Projectile
+  - PlayerProjectile
   - Powerup
   - Geometry
   - Vehicle
-  - 
+  - NPCProjectile
   - 
   - 
   - 
