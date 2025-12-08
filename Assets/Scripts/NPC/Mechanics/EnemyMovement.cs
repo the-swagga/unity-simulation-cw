@@ -25,6 +25,8 @@ public class EnemyMovement : MonoBehaviour
 
         SetRandomSpeed();
 
+        if (agent.enabled == false) return;
+
         baseSpeed = agent.speed;
     }
 
@@ -35,24 +37,37 @@ public class EnemyMovement : MonoBehaviour
 
     public float GetSpeed()
     {
+        if (agent.enabled == false) return baseSpeed;
+
         return agent.speed;
     }
 
     public void SetSpeed(float speed)
     {
+        if (agent.enabled == false) return;
+
         agent.speed = speed;
     }
 
     private void SetRandomSpeed()
     {
+        if (agent.enabled == false) return;
+
         float newSpeed = Random.Range(speedRange[0], speedRange[1]);
         agent.speed = newSpeed;
+    }
+
+    public NavMeshAgent GetNavMeshAgent()
+    {
+        return agent;
     }
 
     // State Functions
 
     public void SetDestToPlayer()
     {
+        if (agent.enabled == false) return;
+
         agent.isStopped = false;
         agent.SetDestination(player.position);
     }
@@ -64,6 +79,8 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator GetCloserCoroutine(Vector3 target)
     {
+        if (agent.enabled == false) yield return null;
+
         float timer = Random.Range(getCloserRange[0], getCloserRange[1]);
         float closerDistance = timer * 25.0f;
 
@@ -83,6 +100,8 @@ public class EnemyMovement : MonoBehaviour
 
     public void EvadePlayer()
     {
+        if (agent.enabled == false) return;
+
         agent.isStopped = false;
 
         Vector3 hivemindCentre = enemyHivemind.HivemindCentre();
@@ -98,11 +117,15 @@ public class EnemyMovement : MonoBehaviour
 
     public void StopMoving()
     {
+        if (agent.enabled == false) return;
+
         agent.isStopped = true;
     }
 
     public void CollidePlayerMovement(Transform target)
     {
+        if (agent.enabled == false) return;
+
         agent.isStopped = false;
         agent.SetDestination(target.position);
 

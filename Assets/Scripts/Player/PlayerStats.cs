@@ -59,12 +59,27 @@ public class PlayerStats : MonoBehaviour
             float force = collision.impulse.magnitude;
             int damage = Mathf.CeilToInt(force * enemyDamageMult);
             TakeDamage(damage);
+            enemyStats.ChangeBravery(0.2f);
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("NPC"))
+        {
+            float force = collision.impulse.magnitude;
+            int damage = Mathf.CeilToInt(force * enemyDamageMult);
+            TakeDamage(damage);
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("NPCProjectile"))
+        {
+            float force = collision.impulse.magnitude;
+            int damage = Mathf.CeilToInt(force * enemyDamageMult * Time.fixedDeltaTime);
+            TakeDamage(damage);
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("NPC"))
         {
             float force = collision.impulse.magnitude;
             int damage = Mathf.CeilToInt(force * enemyDamageMult * Time.fixedDeltaTime);

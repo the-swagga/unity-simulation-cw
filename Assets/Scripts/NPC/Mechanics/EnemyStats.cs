@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EnemyStats : MonoBehaviour
 
     private EnemyMovement movement;
     private float originalSpeed;
+    private NavMeshAgent agent;
 
     [SerializeField] private int baseHP;
     private int hp;
@@ -27,6 +29,7 @@ public class EnemyStats : MonoBehaviour
         playerProjectileSlow = playerStats.GetPlayerProjectileSlow();
 
         originalSpeed = movement.GetSpeed();
+        agent = movement.GetNavMeshAgent();
         hp = baseHP;
         bravery = Random.Range(0.01f, 1.0f);
         Debug.Log("Bravery " + bravery);
@@ -72,6 +75,16 @@ public class EnemyStats : MonoBehaviour
 
             if (movement != null)
                 movement.SetSpeed(movement.GetSpeed() * playerProjectileSlow);
+
+            agent.enabled = false;
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            float force = collision.impulse.magnitude;
+            int damage = Mathf.CeilToInt(force * playerDamageMult * 0.5f);
+            TakeDamage(damage);
+            ChangeBravery(-0.1f);
         }
     }
     private void OnCollisionStay(Collision collision)
@@ -82,6 +95,13 @@ public class EnemyStats : MonoBehaviour
             int damage = Mathf.CeilToInt(force * playerDamageMult * Time.fixedDeltaTime);
             TakeDamage(damage);
         }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            float force = collision.impulse.magnitude;
+            int damage = Mathf.CeilToInt(force * playerDamageMult * Time.fixedDeltaTime * 0.5f);
+            TakeDamage(damage);
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -90,6 +110,8 @@ public class EnemyStats : MonoBehaviour
         {
             if (movement != null)
                 movement.SetSpeed(originalSpeed);
+
+            agent.enabled = true;
         }
     }
 }
