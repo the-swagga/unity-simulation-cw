@@ -73,9 +73,6 @@ public class EnemyStats : MonoBehaviour
             TakeDamage(damage);
             ChangeBravery(-0.1f);
 
-            if (movement != null)
-                movement.SetSpeed(movement.GetSpeed() * playerProjectileSlow);
-
             agent.enabled = false;
         }
 
@@ -108,9 +105,6 @@ public class EnemyStats : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerProjectile"))
         {
-            if (movement != null)
-                movement.SetSpeed(originalSpeed);
-
             agent.enabled = true;
         }
     }

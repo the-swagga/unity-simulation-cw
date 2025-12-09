@@ -59,7 +59,15 @@ public class PlayerStats : MonoBehaviour
             float force = collision.impulse.magnitude;
             int damage = Mathf.CeilToInt(force * enemyDamageMult);
             TakeDamage(damage);
-            enemyStats.ChangeBravery(0.2f);
+
+            EnemyProjectile enemyProjectile = collision.gameObject.GetComponent<EnemyProjectile>();
+            if (enemyProjectile != null)
+            {
+                EnemyStats projectileOwner = enemyProjectile.GetOwner();
+                if (projectileOwner != null)
+                    projectileOwner.ChangeBravery(0.2f);
+                
+            }
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("NPC"))

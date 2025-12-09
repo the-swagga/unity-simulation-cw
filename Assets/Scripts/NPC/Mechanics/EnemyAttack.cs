@@ -35,6 +35,10 @@ public class EnemyAttack : MonoBehaviour
         {
             GameObject newProjectile = Instantiate(projectilePrefab, Vector3.zero, Quaternion.identity);
             newProjectile.SetActive(false);
+
+            EnemyProjectile enemyProjectile = newProjectile.GetComponent<EnemyProjectile>();
+            enemyProjectile.SetOwner(GetComponent<EnemyStats>());
+
             projectilePool[i] = newProjectile;
         }
     }
