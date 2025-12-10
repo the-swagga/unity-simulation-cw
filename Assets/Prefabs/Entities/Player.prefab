@@ -10492,6 +10492,8 @@ MonoBehaviour:
   hotdogSpeedMult: 2
   hotDogMassMult: 2
   hotdogDuration: 5
+  growthRate: 0.05
+  maxScale: 1.199
 --- !u!114 &1086900840096645670
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -472,13 +472,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1384305193}
     m_Modifications:
+    - target: {fileID: -6781943693432402734, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 887380674}
+    - target: {fileID: 1185935166250845147, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
+      propertyPath: maxScale
+      value: 1.199
+      objectReference: {fileID: 0}
     - target: {fileID: 1291733950545657272, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1506317
       objectReference: {fileID: 0}
     - target: {fileID: 1291733950545657272, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6470406
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1291733950545657272, guid: f9640aaef7367f042b7362717502b3c8, type: 3}
       propertyPath: m_LocalPosition.z

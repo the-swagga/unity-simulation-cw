@@ -33,13 +33,13 @@ public class PlayerStats : MonoBehaviour
         if (enemyStats == null)
             enemyStats = FindFirstObjectByType<EnemyStats>();
 
-        enemyDamageMult = enemyStats.GetEnemyDamageMult();
+        if (enemyStats != null)
+            enemyDamageMult = enemyStats.GetEnemyDamageMult();
     }
 
     public void TakeDamage(int damage)
     {
         hp -= damage;
-        Debug.Log("Player HP: " + hp);
     }
 
     public float GetPlayerDamageMult()

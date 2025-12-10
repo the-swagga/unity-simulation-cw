@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
     private Coroutine bananaPowerupCoroutine;
     private Coroutine hotdogPowerupCoroutine;
 
+    [Header("Grasslands OnTrigger Variables")]
+    [SerializeField] private float growthRate;
+    private float maxScale = 1.19f;
+    private Vector3 baseScale;
+
     private void Start()
     {
         cam = FindObjectOfType<ThirdPersonCamera>();
@@ -56,13 +61,15 @@ public class PlayerController : MonoBehaviour
         maxSpeed = moveSpeed * maxSpeedMult;
 
         jumpStrength = baseJumpStrength;
+
+        baseScale = transform.localScale;
     }
 
     private void Update()
     {
         maxSpeed = moveSpeed * maxSpeedMult;
 
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * transform.localScale.y * 0.5f + 0.3f, groundLayer);
 
         Drag();
         MoveInput();
@@ -136,7 +143,7 @@ public class PlayerController : MonoBehaviour
     private void Drag()
     {
         if (isGrounded)
-            rb.drag = groundDrag;
+            rb.drag = groundDrag * transform.localScale.y;
         else
             rb.drag = 0.0f;
     }
@@ -247,5 +254,16 @@ public class PlayerController : MonoBehaviour
             col.material.bounciness = newBounciness;
             col.material.bounceCombine = newBounceCombine;
         }
+    }
+
+    public void Grow()
+    {  
+        if (transform.localScale.x < maxScale)
+            transform.localScale += Vector3.one * growthRate * Time.deltaTime;
+    }
+
+    public void ShrinkToOriginal()
+    {
+        transform.localScale = baseScale;
     }
 }
