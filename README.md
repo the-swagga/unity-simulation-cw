@@ -1,1 +1,2 @@
-Game Technologies Project (Physics, Graphics, and AI)
+Game Technologies Project (Physics, Graphics, AI)
+
