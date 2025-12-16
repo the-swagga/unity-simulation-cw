@@ -150,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 238ad6ea99d845f498c3a2334f75358a, type: 2}
+  - {fileID: 2100000, guid: 80b03264b30be8b4fbdb042b16748b9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 0, y: 45, z: 0}
-  bobDistance: 0.1
   bobSpeed: 3
+  bobDistance: 0.1
 --- !u!114 &3920157047373322252
 MonoBehaviour:
   m_ObjectHideFlags: 0
